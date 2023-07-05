@@ -14,7 +14,7 @@ import os
 import sys
 import django
 
-if os.getenv("READTHEDOCS", default=False) == "True":
+if os.getenv("READTHEDOCS", default=False):
     sys.path.insert(0, os.path.abspath(".."))
     os.environ["DJANGO_READ_DOT_ENV_FILE"] = "True"
     os.environ["USE_DOCKER"] = "no"
