@@ -7,4 +7,3 @@ psycopg[c]==3.1.9  # https://github.com/psycopg/psycopg
 
 # Django
 # ------------------------------------------------------------------------------
-django-anymail==10.0  # https://github.com/anymail/django-anymail
