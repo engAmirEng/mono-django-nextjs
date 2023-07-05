@@ -1,3 +1,3 @@
-from .django import *
-from .third_party import *
-from .project import *
+from .django import *  # noqa
+from .project import *  # noqa
+from .third_party import *  # noqa
