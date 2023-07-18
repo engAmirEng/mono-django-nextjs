@@ -3,10 +3,10 @@ from collections.abc import Sequence
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.resolve()
-PRODUCTION_DOTENVS_DIR = BASE_DIR / ".envs" / ".production"
-PRODUCTION_DOTENV_FILES = [
-    PRODUCTION_DOTENVS_DIR / ".django",
-    PRODUCTION_DOTENVS_DIR / ".postgres",
+DOTENVS_DIR = os.path.join(BASE_DIR, ".envs")
+DOTENV_FILES = [
+    Path(DOTENVS_DIR, ".django"),
+    Path(DOTENVS_DIR, ".postgres"),
 ]
 DOTENV_FILE = BASE_DIR / ".env"
 
@@ -23,4 +23,4 @@ def merge(
 
 
 if __name__ == "__main__":
-    merge(DOTENV_FILE, PRODUCTION_DOTENV_FILES)
+    merge(DOTENV_FILE, DOTENV_FILES)

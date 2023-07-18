@@ -1,0 +1,42 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=no
+IPYTHONDIR=/app/.ipython
+# DJANGO_READ_DOT_ENV_FILE=True
+PLUGGABLES=DEBUG_TOOLBAR,NO_PASS_VALIDATION
+DJANGO_DEBUG=True
+DJANGO_SETTINGS_MODULE=config.settings
+DJANGO_SECRET_KEY=lUjK8ekOw5BVFLgBkVwQbrt0lewGgOoYWSUcC6UeGEwUzZpiHAQLHuO07tDrzLoH
+DJANGO_ADMIN_URL=admin/
+DJANGO_ALLOWED_HOSTS=
+DATABASE_URL=postgres://user:password@hostname:port/db_name
+CONN_MAX_AGE=0
+
+
+
+# Security
+# ------------------------------------------------------------------------------
+# TIP: better off using DNS, however, redirect is OK too
+DJANGO_SECURE_SSL_REDIRECT=False
+
+# Email
+# ------------------------------------------------------------------------------
+DJANGO_SERVER_EMAIL=
+
+
+# Gunicorn
+# ------------------------------------------------------------------------------
+WEB_CONCURRENCY=4
+
+
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Celery
+# ------------------------------------------------------------------------------
+CELERY_BROKER_URL=redis://hostname:port/db_number
+
+# Flower
+CELERY_FLOWER_USER=debug
+CELERY_FLOWER_PASSWORD=debug
