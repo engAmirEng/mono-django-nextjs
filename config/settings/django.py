@@ -170,7 +170,7 @@ MIDDLEWARE = clean_ellipsis(
     [
         "debug_toolbar.middleware.DebugToolbarMiddleware" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
         "django.middleware.security.SecurityMiddleware",
-        "whitenoise.middleware.WhiteNoiseMiddleware",
+        "whitenoise.middleware.WhiteNoiseMiddleware" if PLUGGABLE_FUNCS.SERVE_STATICFILES else ...,
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.locale.LocaleMiddleware",
         "django.middleware.common.CommonMiddleware",
