@@ -1,4 +1,4 @@
-from ._setup import APPS_DIR, BASE_DIR, env
+from ._setup import APPS_DIR, BASE_DIR, PLUGGABLE_FUNCS, clean_ellipsis, env
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -106,12 +106,14 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.forms",
 ]
-THIRD_PARTY_APPS = [
-    "django_celery_beat",
-    "whitenoise.runserver_nostatic",
-    "debug_toolbar",
-    "django_extensions",
-]
+THIRD_PARTY_APPS = clean_ellipsis(
+    [
+        "django_celery_beat",
+        "whitenoise.runserver_nostatic",
+        "debug_toolbar" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
+        "django_extensions",
+    ]
+)
 
 LOCAL_APPS = [
     "name_goes_here.users",
@@ -149,28 +151,34 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
-AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
-]
+AUTH_PASSWORD_VALIDATORS = (
+    [
+        {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+        {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+        {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+        {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    ]
+    if not PLUGGABLE_FUNCS.NO_PASS_VALIDATION
+    else []
+)
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
-MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-]
+MIDDLEWARE = clean_ellipsis(
+    [
+        "debug_toolbar.middleware.DebugToolbarMiddleware" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
+        "django.middleware.security.SecurityMiddleware",
+        "whitenoise.middleware.WhiteNoiseMiddleware",
+        "django.contrib.sessions.middleware.SessionMiddleware",
+        "django.middleware.locale.LocaleMiddleware",
+        "django.middleware.common.CommonMiddleware",
+        "django.middleware.csrf.CsrfViewMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "django.contrib.messages.middleware.MessageMiddleware",
+        "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    ]
+)
 
 # STATIC
 # ------------------------------------------------------------------------------

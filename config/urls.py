@@ -9,8 +9,9 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-if settings.DEBUG:
-    if "debug_toolbar" in settings.INSTALLED_APPS:
-        import debug_toolbar
+if settings.PLUGGABLE_FUNCS.DEBUG_TOOLBAR:
+    import debug_toolbar
 
-        urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
+    urlpatterns.append(
+        path("__debug__/", include(debug_toolbar.urls)),
+    )
