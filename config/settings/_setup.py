@@ -17,7 +17,7 @@ env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
 if READ_DOT_ENV_FILE:
-    from merge_production_dotenvs_in_dotenv import DOTENV_FILE, DOTENV_FILES, merge
+    from merge_dotenvs_in_dotenv import DOTENV_FILE, DOTENV_FILES, merge
 
     merge(DOTENV_FILE, DOTENV_FILES)
     # OS environment variables take precedence over variables from .env
