@@ -11,6 +11,7 @@ DJANGO_ADMIN_URL=admin/
 DJANGO_ALLOWED_HOSTS=
 DATABASE_URL=postgres://user:password@hostname:port/db_name
 CONN_MAX_AGE=0
+GRAPHIQL=True
 
 
 

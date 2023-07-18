@@ -44,3 +44,8 @@ DEBUG_TOOLBAR_CONFIG = {
     "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
     "SHOW_TEMPLATE_CONTEXT": True,
 }
+
+# graphene-django
+# ------------------------------------------------------------------------------
+GRAPHIQL = env.bool("GRAPHIQL", False)
+GRAPHENE = {}

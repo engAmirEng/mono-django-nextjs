@@ -108,10 +108,11 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = clean_ellipsis(
     [
-        "django_celery_beat",
-        "whitenoise.runserver_nostatic",
         "debug_toolbar" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
+        "django_celery_beat",
         "django_extensions",
+        "graphene_django",
+        "whitenoise.runserver_nostatic",
     ]
 )
 
