@@ -1,4 +1,4 @@
-from ._setup import env
+from ._setup import PLUGGABLE_FUNCS, clean_ellipsis, env
 
 # Celery
 # ------------------------------------------------------------------------------
@@ -48,4 +48,10 @@ DEBUG_TOOLBAR_CONFIG = {
 # graphene-django
 # ------------------------------------------------------------------------------
 GRAPHIQL = env.bool("GRAPHIQL", False)
-GRAPHENE = {}
+GRAPHENE = {
+    "MIDDLEWARE": clean_ellipsis(
+        [
+            "graphene_django.debug.DjangoDebugMiddleware" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
+        ]
+    )
+}
