@@ -7,7 +7,7 @@ FROM python as python-build-stage
 ARG BUILD_ENVIRONMENT=local
 
 # Install apt packages
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN --mount=type=cache,target=var/cache/apt/archives apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
   build-essential \
   # psycopg2 dependencies
@@ -35,7 +35,7 @@ WORKDIR ${APP_HOME}
 
 
 # devcontainer dependencies and utils
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN --mount=type=cache,target=var/cache/apt/archives apt-get update && apt-get install --no-install-recommends -y \
   sudo git bash-completion nano ssh
 
 # Create devcontainer user and add it to sudoers
@@ -46,7 +46,7 @@ RUN groupadd --gid 1000 dev-user \
 
 
 # Install required system dependencies
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN --mount=type=cache,target=var/cache/apt/archives apt-get update && apt-get install --no-install-recommends -y \
   # psycopg2 dependencies
   libpq-dev \
   # Translations dependencies
