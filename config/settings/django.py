@@ -112,6 +112,7 @@ THIRD_PARTY_APPS = clean_ellipsis(
         "django_celery_beat",
         "django_extensions",
         "graphene_django",
+        "graphql_jwt.refresh_token",
         "whitenoise.runserver_nostatic",
     ]
 )
@@ -132,6 +133,7 @@ MIGRATION_MODULES = {"sites": "name_goes_here.contrib.sites.migrations"}
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
+    "graphql_jwt.backends.JSONWebTokenBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model

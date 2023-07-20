@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from ._setup import PLUGGABLE_FUNCS, clean_ellipsis, env
 
 # Celery
@@ -47,11 +49,20 @@ DEBUG_TOOLBAR_CONFIG = {
 
 # graphene-django
 # ------------------------------------------------------------------------------
-GRAPHIQL = env.bool("GRAPHIQL", False)
 GRAPHENE = {
     "MIDDLEWARE": clean_ellipsis(
         [
             "graphene_django.debug.DjangoDebugMiddleware" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
+            "graphql_jwt.middleware.JSONWebTokenMiddleware",
         ]
     )
+}
+
+# django-graphql-jwt
+# ------------------------------------------------------------------------------
+GRAPHQL_JWT = {
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_EXPIRATION_DELTA": timedelta(minutes=5),
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=7),
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
 }

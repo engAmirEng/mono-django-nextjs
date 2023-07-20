@@ -2,6 +2,8 @@ import graphene
 from django.conf import settings
 from graphene_django.debug import DjangoDebug
 
+from name_goes_here.users.schema import JWTMutation
+
 
 class Query(graphene.ObjectType):
     if settings.PLUGGABLE_FUNCS.DEBUG_TOOLBAR:
@@ -10,4 +12,8 @@ class Query(graphene.ObjectType):
     hello = graphene.String(default_value="Hi!")
 
 
-schema = graphene.Schema(query=Query)
+class Mutation(graphene.ObjectType, JWTMutation):
+    pass
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
