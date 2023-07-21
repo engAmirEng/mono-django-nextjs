@@ -1,3 +1,4 @@
+gevent>=22.10.2,<22.11
 graphene-django==3.1.2
 graphene==3.2.2
 django-graphql-jwt==0.3.4
