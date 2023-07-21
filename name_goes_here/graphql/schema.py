@@ -6,7 +6,7 @@ from name_goes_here.users.schema import Mutation as UsersMutation
 from name_goes_here.users.schema import Query as UsersQuery
 
 
-class Query(graphene.ObjectType, UsersQuery):
+class Query(UsersQuery, graphene.ObjectType):
     if settings.PLUGGABLE_FUNCS.DEBUG_TOOLBAR:
         debug = graphene.Field(DjangoDebug, name="_debug")
 

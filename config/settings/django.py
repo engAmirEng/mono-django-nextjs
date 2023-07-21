@@ -111,6 +111,7 @@ THIRD_PARTY_APPS = clean_ellipsis(
         "debug_toolbar" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
         "django_celery_beat",
         "django_extensions",
+        "django_filters",
         "graphene_django",
         "graphql_jwt.refresh_token",
         "whitenoise.runserver_nostatic",

@@ -1,9 +1,10 @@
 import graphene
 import graphql_jwt
+from graphene import relay
 from graphene_django import DjangoObjectType
+from graphene_django.filter import DjangoFilterConnectionField
 
-from name_goes_here.utils.schema import IError
-
+from .filters import UserFilter
 from .models import User
 
 
@@ -14,38 +15,20 @@ class JWTMutation:
     revoke_token = graphql_jwt.Revoke.Field()
 
 
-# Error types
-# ------------------------------------------------------------------------------
-class PermissionDeniedErrorType(graphene.ObjectType):
-    required_perm = graphene.String(required=True)
-
-    class Meta:
-        interfaces = (IError,)
-
-
-class NotAuthorizedErrorType(graphene.ObjectType):
-    class Meta:
-        interfaces = (IError,)
-
-
-# Model types
-# ------------------------------------------------------------------------------
 class UserType(DjangoObjectType):
     class Meta:
         model = User
-        fields = "__all__"
+        interfaces = (relay.Node,)
+        fields = ("id", "username", "name")
+
+    @classmethod
+    def get_queryset(cls, queryset, info):
+        return queryset
 
 
-class UserResult(graphene.Union):
-    class Meta:
-        types = (UserType, NotAuthorizedErrorType)
-
-
-class Query:
-    users = graphene.List(UserResult)
-
-    def resolve_users(root, info, **kwargs):
-        return User.objects.all()
+class Query(graphene.ObjectType):
+    user = graphene.relay.Node.Field(UserType)
+    users = DjangoFilterConnectionField(UserType, filterset_class=UserFilter)
 
 
 class Mutation(JWTMutation):
