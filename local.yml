@@ -17,8 +17,8 @@ services:
     volumes:
       - .:/app:z
     env_file:
-      - ./.envs/.django
-      - ./.envs/.postgres
+      - ./.envs/.django.dist
+      - ./.envs/.postgres.dist
     ports:
       - '8000:8000'
     command: /start
@@ -33,7 +33,7 @@ services:
       - name_goes_here_local_postgres_data:/var/lib/postgresql/data
       - name_goes_here_local_postgres_data_backups:/backups
     env_file:
-      - ./.envs/.postgres
+      - ./.envs/.postgres.dist
 
   docs:
     image: name_goes_here_local_docs
@@ -42,7 +42,7 @@ services:
       context: .
       dockerfile: ./compose/local/docs/Dockerfile
     env_file:
-      - ./.envs/.django
+      - ./.envs/.django.dist
     volumes:
       - ./docs:/docs:z
       - ./config:/app/config:z
