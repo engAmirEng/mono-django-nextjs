@@ -46,3 +46,7 @@ class Query:
 
     def resolve_users(root, info, **kwargs):
         return User.objects.all()
+
+
+class Mutation(JWTMutation):
+    pass

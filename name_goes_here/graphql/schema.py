@@ -2,7 +2,7 @@ import graphene
 from django.conf import settings
 from graphene_django.debug import DjangoDebug
 
-from name_goes_here.users.schema import JWTMutation
+from name_goes_here.users.schema import Mutation as UsersMutation
 from name_goes_here.users.schema import Query as UsersQuery
 
 
@@ -13,7 +13,7 @@ class Query(graphene.ObjectType, UsersQuery):
     hello = graphene.String(default_value="Hi!")
 
 
-class Mutation(graphene.ObjectType, JWTMutation):
+class Mutation(graphene.ObjectType, UsersMutation):
     pass
 
 
