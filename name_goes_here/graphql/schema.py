@@ -3,9 +3,10 @@ from django.conf import settings
 from graphene_django.debug import DjangoDebug
 
 from name_goes_here.users.schema import JWTMutation
+from name_goes_here.users.schema import Query as UsersQuery
 
 
-class Query(graphene.ObjectType):
+class Query(graphene.ObjectType, UsersQuery):
     if settings.PLUGGABLE_FUNCS.DEBUG_TOOLBAR:
         debug = graphene.Field(DjangoDebug, name="_debug")
 
