@@ -1,6 +1,6 @@
 import graphene
 import graphql_jwt
-from graphene_django import DjangoConnectionField, DjangoListField, DjangoObjectType
+from graphene_django import DjangoObjectType
 
 from name_goes_here.utils.schema import IError
 
