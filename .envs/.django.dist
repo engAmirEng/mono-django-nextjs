@@ -32,11 +32,12 @@ WEB_CONCURRENCY=4
 
 # Redis
 # ------------------------------------------------------------------------------
+# redis://hostname:port/db_number
 REDIS_URL=redis://redis:6379/0
 
 # Celery
 # ------------------------------------------------------------------------------
-CELERY_BROKER_URL=redis://hostname:port/db_number
+#CELERY_BROKER_URL=$REDIS_URL
 
 # Flower
 CELERY_FLOWER_USER=debug
