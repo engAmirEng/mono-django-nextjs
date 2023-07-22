@@ -1,7 +1,7 @@
-from django.contrib.auth import get_user_model
-from django.core import management
-
 from celery import shared_task
+from django.contrib.auth import get_user_model
+from django.db.models import Q
+from graphql_jwt.refresh_token.utils import get_refresh_token_model
 
 User = get_user_model()
 
@@ -15,4 +15,11 @@ def get_users_count():
 @shared_task
 def clear_expired_refresh_tokens():
     """Removes expired refresh tokens from db."""
-    return management.call_command("cleartokens", expired=True)
+    qs = get_refresh_token_model().objects
+    query = Q(revoked__isnull=False)
+    qs = qs.expired()
+    query |= Q(expired=True)
+
+    deleted, _ = qs.filter(query).delete()
+
+    return deleted
