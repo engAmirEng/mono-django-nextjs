@@ -58,6 +58,9 @@ GRAPHENE = {
     )
 }
 
+# django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
+CORS_URLS_REGEX = r"^/api/.*$|^/graphql/$"
+
 # django-graphql-jwt
 # ------------------------------------------------------------------------------
 GRAPHQL_JWT = {

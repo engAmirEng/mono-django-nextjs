@@ -108,6 +108,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = clean_ellipsis(
     [
+        "corsheaders",
         "debug_toolbar" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
         "django_celery_beat",
         "django_extensions",
@@ -176,6 +177,7 @@ MIDDLEWARE = clean_ellipsis(
     [
         "debug_toolbar.middleware.DebugToolbarMiddleware" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
         "django.middleware.security.SecurityMiddleware",
+        "corsheaders.middleware.CorsMiddleware",
         "whitenoise.middleware.WhiteNoiseMiddleware" if PLUGGABLE_FUNCS.SERVE_STATICFILES else ...,
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.locale.LocaleMiddleware",
