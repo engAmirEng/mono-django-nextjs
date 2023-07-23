@@ -19,3 +19,7 @@ django==4.2.3  # pyup: < 5.0  # https://www.djangoproject.com/
 django-environ==0.10.0  # https://github.com/joke2k/django-environ
 django-model-utils==4.3.1  # https://github.com/jazzband/django-model-utils
 django-redis==5.3.0  # https://github.com/jazzband/django-redis
+# Django REST Framework
+djangorestframework==3.14.0  # https://github.com/encode/django-rest-framework
+# DRF-spectacular for api documentation
+drf-spectacular==0.26.3  # https://github.com/tfranzel/drf-spectacular

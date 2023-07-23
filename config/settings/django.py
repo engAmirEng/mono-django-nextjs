@@ -112,8 +112,10 @@ THIRD_PARTY_APPS = clean_ellipsis(
         "django_celery_beat",
         "django_extensions",
         "django_filters",
+        "drf_spectacular",
         "graphene_django",
         "graphql_jwt.refresh_token",
+        "rest_framework",
         "whitenoise.runserver_nostatic",
     ]
 )
