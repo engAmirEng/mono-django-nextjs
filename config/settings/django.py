@@ -116,6 +116,7 @@ THIRD_PARTY_APPS = clean_ellipsis(
         "graphene_django",
         "graphql_jwt.refresh_token",
         "rest_framework",
+        "rest_framework_simplejwt",
         "whitenoise.runserver_nostatic",
     ]
 )

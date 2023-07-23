@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.decorators.csrf import csrf_exempt
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 from name_goes_here.graphql.schema import schema
 from name_goes_here.graphql.views import GraphQLView
@@ -15,6 +16,10 @@ urlpatterns = [
     path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=settings.GRAPHIQL, schema=schema))),
     # REST API base url
     path("api/", include("name_goes_here.rest.api_router")),
+    # REST API JWT
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     # REST API schema
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     # REST API docs
