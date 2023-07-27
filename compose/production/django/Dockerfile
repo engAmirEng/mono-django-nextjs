@@ -90,6 +90,9 @@ USER django
 
 RUN DATABASE_URL="" \
   CELERY_BROKER_URL="" \
+  PLUGGABLES="" \
+  USE_DOCKER="" \
+  REDIS_URL="" \
   DJANGO_SETTINGS_MODULE="config.settings" \
   python manage.py compilemessages
 
