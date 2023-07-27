@@ -1,5 +1,19 @@
+import environ
+
 from ._setup import APPS_DIR, BASE_DIR, PLUGGABLE_FUNCS, clean_ellipsis, env
 
+# Set defaults
+defaults = {}
+if env("DATABASE_URL", default=None) is None:
+    defaults.update(
+        DATABASE_URL=(
+            (
+                str,
+                f"postgres://{env.str('POSTGRES_USER', '')}:{env.str('POSTGRES_PASSWORD', '')}@{env.str('POSTGRES_HOST', '')}:{env.int('POSTGRES_PORT', 0)}/{env.str('POSTGRES_DB', '')}",  # noqa: E501
+            )
+        )
+    )
+env = environ.Env(**defaults)
 # GENERAL
 # ------------------------------------------------------------------------------
 DEBUG = env.bool("DJANGO_DEBUG", False)

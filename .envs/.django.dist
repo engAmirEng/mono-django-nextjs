@@ -9,7 +9,7 @@ DJANGO_SETTINGS_MODULE=config.settings
 DJANGO_SECRET_KEY=lUjK8ekOw5BVFLgBkVwQbrt0lewGgOoYWSUcC6UeGEwUzZpiHAQLHuO07tDrzLoH
 DJANGO_ADMIN_URL=admin/
 #DJANGO_ALLOWED_HOSTS=
-DATABASE_URL=postgres://user:password@hostname:port/db_name
+#DATABASE_URL=postgres://user:password@hostname:port/db_name
 CONN_MAX_AGE=0
 GRAPHIQL=True
 
