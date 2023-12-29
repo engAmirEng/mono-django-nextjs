@@ -1,7 +1,8 @@
 from celery import shared_task
+from graphql_jwt.refresh_token.utils import get_refresh_token_model
+
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-from graphql_jwt.refresh_token.utils import get_refresh_token_model
 
 User = get_user_model()
 

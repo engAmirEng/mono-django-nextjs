@@ -3,6 +3,7 @@ from logging import LogRecord
 from pathlib import Path
 
 import environ
+
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent

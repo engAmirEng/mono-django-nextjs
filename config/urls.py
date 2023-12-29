@@ -1,10 +1,11 @@
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views.decorators.csrf import csrf_exempt
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 from name_goes_here.graphql.schema import schema
 from name_goes_here.graphql.views import GraphQLView
