@@ -1,4 +1,6 @@
+from logging import LogRecord
 from pathlib import Path
+from typing import Iterable
 
 import environ
 from django.core.exceptions import ImproperlyConfigured
@@ -11,6 +13,18 @@ APPS_DIR = BASE_DIR / "name_goes_here"
 # handy funcs
 def clean_ellipsis(items: iter):
     return [i for i in items if i is not ...]
+
+
+def log_ignore_modules(module_name: Iterable[str]):
+    """
+    ignores the logs below CRITICAL in the given module names
+    use the output as argument to django.utils.log.CallbackFilter
+    """
+
+    def callback(f: LogRecord):
+        return (f.module not in module_name) or f.levelname == "CRITICAL"
+
+    return callback
 
 
 env = environ.Env()

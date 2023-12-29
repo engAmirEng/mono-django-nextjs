@@ -1,6 +1,8 @@
+import os
+
 import environ
 
-from ._setup import APPS_DIR, BASE_DIR, PLUGGABLE_FUNCS, clean_ellipsis, env
+from ._setup import APPS_DIR, BASE_DIR, PLUGGABLE_FUNCS, clean_ellipsis, env, log_ignore_modules
 
 # Set defaults
 defaults = {}
@@ -109,17 +111,6 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
 # ------------------------------------------------------------------------------
-DJANGO_APPS = [
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.sites",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    # "django.contrib.humanize", # Handy template tags
-    "django.contrib.admin",
-    "django.forms",
-]
 THIRD_PARTY_APPS = clean_ellipsis(
     [
         "corsheaders",
@@ -139,6 +130,17 @@ THIRD_PARTY_APPS = clean_ellipsis(
 LOCAL_APPS = [
     "name_goes_here.users",
     # Your stuff: custom apps go here
+]
+DJANGO_APPS = [
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    # "django.contrib.humanize", # Handy template tags
+    "django.contrib.admin",
+    "django.forms",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
@@ -304,9 +306,17 @@ TEST_RUNNER = "django.test.runner.DiscoverRunner"
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # See https://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+logs_dir = os.path.join(BASE_DIR, "logs")
+os.makedirs(logs_dir, exist_ok=True)
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    'filters': {
+        'ignore_autoreload': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': log_ignore_modules(["autoreload"])
+        }
+    },
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s",
@@ -317,7 +327,16 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
             "formatter": "verbose",
-        }
+        },
+        "file": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": os.path.join(logs_dir, "info.log"),
+            "backupCount": env.int('MAX_LOG_FILE_COUNT', default=1),
+            "maxBytes": 50*1024*1024,
+            "filters": ["ignore_autoreload"],
+            "formatter": "verbose"
+        },
     },
-    "root": {"level": "INFO", "handlers": ["console"]},
+    "root": {"level": "INFO", "handlers": ["console", "file"]},
 }
