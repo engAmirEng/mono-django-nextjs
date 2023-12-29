@@ -1,6 +1,6 @@
+from collections.abc import Iterable
 from logging import LogRecord
 from pathlib import Path
-from typing import Iterable
 
 import environ
 from django.core.exceptions import ImproperlyConfigured

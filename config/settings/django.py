@@ -311,11 +311,8 @@ os.makedirs(logs_dir, exist_ok=True)
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    'filters': {
-        'ignore_autoreload': {
-            '()': 'django.utils.log.CallbackFilter',
-            'callback': log_ignore_modules(["autoreload"])
-        }
+    "filters": {
+        "ignore_autoreload": {"()": "django.utils.log.CallbackFilter", "callback": log_ignore_modules(["autoreload"])}
     },
     "formatters": {
         "verbose": {
@@ -332,10 +329,10 @@ LOGGING = {
             "level": "INFO",
             "class": "logging.handlers.RotatingFileHandler",
             "filename": os.path.join(logs_dir, "info.log"),
-            "backupCount": env.int('MAX_LOG_FILE_COUNT', default=1),
-            "maxBytes": 50*1024*1024,
+            "backupCount": env.int("MAX_LOG_FILE_COUNT", default=1),
+            "maxBytes": 50 * 1024 * 1024,
             "filters": ["ignore_autoreload"],
-            "formatter": "verbose"
+            "formatter": "verbose",
         },
     },
     "root": {"level": "INFO", "handlers": ["console", "file"]},
