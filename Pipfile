@@ -23,8 +23,12 @@ whitenoise = ">=6.6.0,<6.7"
 
 [dev-packages]
 django-debug-toolbar = ">=4.2.0,<4.3"
+factory-boy = ">=3.3.0,<3.4"
 pre-commit = ">=3.6.0,<3.7"
 psycopg = ">=3.1.16,<3.2"
+pytest = ">=7.4.3,<7.5"
+pytest-django = ">=4.7.0,<4.8"
+pytest-sugar = ">=0.9.7,<1"
 Sphinx = "7.2.6,<7.3"
 sphinx-autobuild = "2021.3.14"
 watchfiles = ">=0.21.0,<0.22"
