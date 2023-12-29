@@ -94,6 +94,6 @@ RUN DATABASE_URL="" \
   USE_DOCKER="" \
   REDIS_URL="" \
   DJANGO_SETTINGS_MODULE="config.settings" \
-  python manage.py compilemessages
+  python manage.py compilemessages --ignore graphql_jwt
 
 ENTRYPOINT ["/entrypoint"]
