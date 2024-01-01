@@ -1,7 +1,7 @@
 -i https://pypi.org/simple
 -r base.txt
 gevent==23.9.1; python_version >= '3.8'
-greenlet==3.0.3; python_version < '3.11' and platform_python_implementation == 'CPython'
+greenlet==3.0.3; platform_python_implementation == 'CPython' and python_version < '3.11'
 gunicorn[gevent]==21.2.0; python_version >= '3.5'
 packaging==23.2; python_version >= '3.7'
 psycopg[c]==3.1.16; python_version >= '3.7'
