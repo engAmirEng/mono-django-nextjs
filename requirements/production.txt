@@ -1,12 +1,7 @@
 -i https://pypi.org/simple
 -r base.txt
-gevent==23.9.1; python_version >= '3.8'
-greenlet==3.0.3; platform_python_implementation == 'CPython' and python_version < '3.11'
-gunicorn[gevent]==21.2.0; python_version >= '3.5'
+gunicorn==21.2.0; python_version >= '3.5'
 packaging==23.2; python_version >= '3.7'
 psycopg[c]==3.1.16; python_version >= '3.7'
 psycopg-c==3.1.16
-setuptools==69.0.3; python_version >= '3.8'
 typing-extensions==4.9.0; python_version < '3.11'
-zope.event==5.0; python_version >= '3.7'
-zope.interface==6.1; python_version >= '3.7'
