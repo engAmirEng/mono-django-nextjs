@@ -48,6 +48,13 @@ for p in pluggable_enabled:
 
 
 class PLUGGABLE_FUNCS:
+    try:
+        import daphne
+    except ImportError:
+        DAPHNE = False
+    else:
+        DAPHNE = True
+
     DEBUG_TOOLBAR = "DEBUG_TOOLBAR" in pluggable_enabled
     NO_PASS_VALIDATION = "NO_PASS_VALIDATION" in pluggable_enabled
     SERVE_STATICFILES = "SERVE_STATICFILES" in pluggable_enabled

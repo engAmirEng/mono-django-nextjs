@@ -107,7 +107,7 @@ CACHES = {
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
 ROOT_URLCONF = "config.urls"
-# https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
+ASGI_APPLICATION = "config.asgi.application"
 WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
@@ -125,6 +125,8 @@ THIRD_PARTY_APPS = clean_ellipsis(
         "rest_framework",
         "rest_framework_simplejwt",
         "whitenoise.runserver_nostatic",
+        # make sure any runserver command is after whitenoise's
+        "daphne" if PLUGGABLE_FUNCS.DAPHNE else ...,
     ]
 )
 
