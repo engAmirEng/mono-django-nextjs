@@ -38,7 +38,8 @@ watchfiles = ">=0.21.0,<0.22"
 
 [prod-packages]
 "psycopg[c]" = ">=3.1.16,<3.2"
-"gunicorn" = ">=21.2.0,<21.3"
+gunicorn = ">=21.2.0,<21.3"
+"uvicorn[standard]" = ">=0.25.0,<1"
 
 [requires]
 python_version = ">=3.9,<3.13"

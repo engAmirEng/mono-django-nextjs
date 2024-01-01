@@ -1,1 +1,1 @@
-worker_class = "gthread"
+worker_class = "uvicorn.workers.UvicornWorker"
