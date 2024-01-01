@@ -4,6 +4,7 @@ volumes:
   production_postgres_data: {}
   production_postgres_data_backups: {}
   production_django_media: {}
+  production_ssl_certs: {}
 
 services:
   django: &django
@@ -60,5 +61,13 @@ services:
       - django
     volumes:
       - production_django_media:/usr/share/nginx/media:ro
+      - production_ssl_certs:/etc/nginx/njs-acme
     ports:
       - '0.0.0.0:80:80'
+      - '0.0.0.0:443:443'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://domain_name_goes_here/acme/auto"]
+      interval: 90s
+      timeout: 90s
+      retries: 3
+      start_period: 10s
