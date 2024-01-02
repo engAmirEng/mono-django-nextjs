@@ -2,11 +2,12 @@
 # ------------------------------------------------------------------------------
 USE_DOCKER=no
 #IPYTHONDIR=
-{str, default to config.settings}
+# {str, default to config.settings}
 #DJANGO_SETTINGS_MODULE=
-# DJANGO_READ_DOT_ENV_FILE=True
+# {bool, default to false}
+# DJANGO_READ_DOT_ENV_FILE=
 PLUGGABLES=DEBUG_TOOLBAR,NO_PASS_VALIDATION,SERVE_STATICFILES
-{str, default to admin/}
+# {str, default to admin/}
 #DJANGO_ADMIN_URL=
 # {list, default to localhost,0.0.0.0,127.0.0.1}
 #DJANGO_ALLOWED_HOSTS=
@@ -22,10 +23,10 @@ PLUGGABLES=DEBUG_TOOLBAR,NO_PASS_VALIDATION,SERVE_STATICFILES
 
 # Security
 # ------------------------------------------------------------------------------
-{bool, default to false}
+# {bool, default to false}
 #DJANGO_DEBUG=
 DJANGO_SECRET_KEY=some-random-unsecure-fsdfsajkgkjsbgkjsahd87549yhiqhwrwy48y84
-{tuple, default to HTTP_X_FORWARDED_PROTO, None)
+# {tuple, default to HTTP_X_FORWARDED_PROTO, None)
 #DJANGO_SECURE_PROXY_SSL_HEADER=
 # {bool, default to false}
 #DJANGO_SECURE_SSL_REDIRECT=
