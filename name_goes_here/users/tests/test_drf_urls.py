@@ -1,6 +1,6 @@
 from django.urls import resolve, reverse
 
-from name_goes_here.users.models import User
+from ..models import User
 
 
 def test_user_detail(user: User):
