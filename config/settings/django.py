@@ -88,6 +88,7 @@ LOCAL_APPS = [
 ]
 THIRD_PARTY_APPS = clean_ellipsis(
     [
+        "axes",
         "corsheaders",
         "debug_toolbar" if PLUGGABLE_FUNCS.DEBUG_TOOLBAR else ...,
         "django_celery_beat",
@@ -116,6 +117,8 @@ INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
+    # AxesStandaloneBackend should be the first
+    "axes.backends.AxesStandaloneBackend",
     "graphql_jwt.backends.JSONWebTokenBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
@@ -157,6 +160,11 @@ MIDDLEWARE = clean_ellipsis(
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        # It only formats user lockout messages and renders Axes lockout responses
+        # on failed user authentication attempts from login views.
+        # If you do not want Axes to override the authentication response
+        # you can skip installing the middleware and use your own views.
+        "axes.middleware.AxesMiddleware",
     ]
 )
 
