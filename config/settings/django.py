@@ -112,6 +112,10 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
 # ------------------------------------------------------------------------------
+LOCAL_APPS = [
+    "name_goes_here.users",
+    # Your stuff: custom apps go here
+]
 THIRD_PARTY_APPS = clean_ellipsis(
     [
         "corsheaders",
@@ -129,11 +133,6 @@ THIRD_PARTY_APPS = clean_ellipsis(
         "daphne" if PLUGGABLE_FUNCS.DAPHNE else ...,
     ]
 )
-
-LOCAL_APPS = [
-    "name_goes_here.users",
-    # Your stuff: custom apps go here
-]
 DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
