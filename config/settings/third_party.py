@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 from ._setup import PLUGGABLE_FUNCS, clean_ellipsis, env
+from .django import DEBUG
 
 # Celery
 # ------------------------------------------------------------------------------
@@ -59,6 +60,12 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_RENDERER_CLASSES": clean_ellipsis(
+        [
+            "rest_framework.renderers.JSONRenderer",
+            "rest_framework.renderers.BrowsableAPIRenderer" if DEBUG else ...,
+        ]
+    ),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
