@@ -89,6 +89,7 @@ RUN chown django:django ${APP_HOME}
 USER django
 
 RUN DATABASE_URL="" \
+  DJANGO_SECRET_KEY="just-in-case" \
   CELERY_BROKER_URL="" \
   PLUGGABLES="" \
   USE_DOCKER="" \
