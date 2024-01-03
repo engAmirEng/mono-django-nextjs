@@ -18,6 +18,7 @@ cron-descriptor==1.4.0
 django==4.2.9; python_version >= '3.8'
 django-axes[ipware]==6.3.0; python_version >= '3.7'
 django-celery-beat==2.5.0
+django-cleanup==8.0.0
 django-cors-headers==4.3.1; python_version >= '3.8'
 django-environ==0.11.2; python_version >= '3.6' and python_version < '4'
 django-filter==23.5; python_version >= '3.7'

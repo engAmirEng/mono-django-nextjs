@@ -101,6 +101,8 @@ THIRD_PARTY_APPS = clean_ellipsis(
         "whitenoise.runserver_nostatic",
         # make sure any runserver command is after whitenoise's
         "daphne" if PLUGGABLE_FUNCS.DAPHNE else ...,
+        # django_cleanup should be placed last
+        "django_cleanup.apps.CleanupConfig",
     ]
 )
 DJANGO_APPS = [
