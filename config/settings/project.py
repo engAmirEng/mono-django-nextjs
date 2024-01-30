@@ -1,6 +1,8 @@
 from ._setup import env
 
-# Project stuff...
+# Project's apps stuff...
+# ------------------------------------------------------------------------------
+# graphql
 # ------------------------------------------------------------------------------
 # show graphiql panel or not
 GRAPHIQL = env.bool("GRAPHIQL", False)
