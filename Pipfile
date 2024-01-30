@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 django = ">=4.2.8,<5"
-"django-axes[ipware]" = ">=6.3.0,<6.4"
+django-axes = ">=6.3.0,<6.4"
 django-celery-beat = ">=2.5.0,<2.6"
 django-cleanup = ">=8.0.0,<8.1"
 django-cors-headers = ">=4.3.1,<4.4"

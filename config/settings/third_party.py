@@ -22,6 +22,9 @@ CELERY_WORKER_SEND_TASK_EVENTS = True
 CELERY_TASK_SEND_SENT_EVENT = True
 CELERY_TASK_EAGER_PROPAGATES = True
 
+# django-axes
+# ------------------------------------------------------------------------------
+AXES_CLIENT_IP_CALLABLE = "name_goes_here.utils.ip.get_client_ip"
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
