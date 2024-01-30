@@ -1,8 +1,6 @@
 version: '3'
 
 volumes:
-  production_postgres_data: {}
-  production_postgres_data_backups: {}
   production_django_media: {}
   production_django_logs: {}
   production_ssl_certs: {}
@@ -18,23 +16,13 @@ services:
       - production_django_media:/app/name_goes_here/media
       - production_django_logs:/app/name_goes_here/logs
     depends_on:
-      - postgres
       - redis
     env_file:
       - ./.envs/.django
       - ./.envs/.postgres
     command: /start
-
-  postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    image: name_goes_here_production_postgres
-    volumes:
-      - production_postgres_data:/var/lib/postgresql/data
-      - production_postgres_data_backups:/backups
-    env_file:
-      - ./.envs/.postgres
+    extra_hosts:
+      - 'host-gateway:host-gateway'
 
   redis:
     image: redis:6

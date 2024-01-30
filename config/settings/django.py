@@ -2,21 +2,13 @@ import os
 
 import environ
 
+import django.core.exceptions
 from django.utils.translation import gettext_lazy as __
 
-from ._setup import APPS_DIR, BASE_DIR, PLUGGABLE_FUNCS, clean_ellipsis, env, log_ignore_modules
+from ._setup import APPS_DIR, BASE_DIR, PLUGGABLE_FUNCS, clean_ellipsis, log_ignore_modules
 
 # Set defaults
 defaults = {}
-if env("DATABASE_URL", default=None) is None:
-    defaults.update(
-        DATABASE_URL=(
-            (
-                str,
-                f"postgres://{env.str('POSTGRES_USER', '')}:{env.str('POSTGRES_PASSWORD', '')}@{env.str('POSTGRES_HOST', '')}:{env.int('POSTGRES_PORT', 0)}/{env.str('POSTGRES_DB', '')}",  # noqa: E501
-            )
-        )
-    )
 env = environ.Env(**defaults)
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -63,8 +55,26 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES = {"default": env.db("DATABASE_URL")}
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=0)
+try:
+    # TODO why try except?
+    # when DATABASE_URL="" then env("DATABASE_URL", default=None) returns None!!
+
+    # just for "docs" and to run project in a dummy mode
+    DATABASES = {"default": env.db("DATABASE_URL")}
+except django.core.exceptions.ImproperlyConfigured:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "HOST": env.str("POSTGRES_HOST"),
+            "NAME": env.str("POSTGRES_DB"),
+            "PASSWORD": env.str("POSTGRES_PASSWORD"),
+            "PORT": env.int("POSTGRES_PORT"),
+            "USER": env.str("POSTGRES_USER"),
+            "CONN_MAX_AGE": env.int("CONN_MAX_AGE", default=0),
+        }
+    }
+    DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=0)
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # CACHES

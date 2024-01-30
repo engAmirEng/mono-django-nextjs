@@ -11,7 +11,7 @@ PLUGGABLES=DEBUG_TOOLBAR,NO_PASS_VALIDATION,SERVE_STATICFILES
 #DJANGO_ADMIN_URL=
 # {list, default to localhost,0.0.0.0,127.0.0.1}
 #DJANGO_ALLOWED_HOSTS=
-# {default is figured out of .envs/.postgres, postgres://user:password@hostname:port/db_name}
+# {do not set this except dummy usages , postgres://user:password@hostname:port/db_name}
 #DATABASE_URL=
 # {int, default to 0}
 #CONN_MAX_AGE=

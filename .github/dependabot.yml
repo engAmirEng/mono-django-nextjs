@@ -68,13 +68,6 @@ updates:
           - 'version-update:semver-minor'
 
   - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/production/postgres` directory
-    directory: 'compose/production/postgres/'
-    # Every weekday
-    schedule:
-      interval: 'daily'
-
-  - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/production/traefik` directory
     directory: 'compose/production/traefik/'
     # Every weekday
